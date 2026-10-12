@@ -1,0 +1,71 @@
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: var(--f-sans);
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.list {
+  display: flex;
+  align-items: center;
+}
+
+.link {
+  position: relative;
+  display: inline-block;
+  padding: calc(6 * var(--u)) calc(6 * var(--u));
+  color: var(--c-ink-text);
+  transition: color 0.3s var(--ease-out);
+}
+
+.link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: calc(-6 * var(--u));
+  height: calc(2.5 * var(--u));
+  background: var(--c-teal);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s var(--ease-out);
+}
+
+.link:hover,
+.active {
+  color: var(--c-teal);
+}
+
+.link:hover::after,
+.active::after {
+  transform: scaleX(1);
+}
+
+.active {
+  font-weight: 600;
+}
+
+.menu {
+  display: grid;
+  gap: calc(6 * var(--u));
+  width: calc(42 * var(--u));
+  padding: calc(6 * var(--u)) 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+
+.menu span {
+  display: block;
+  height: calc(1.6 * var(--u));
+  background: var(--c-ink);
+  transition: transform 0.35s var(--ease-out);
+}
+
+.menu:hover span:last-child {
+  transform: scaleX(0.6);
+  transform-origin: right;
+}

@@ -1,0 +1,110 @@
+/* Hidden until the page intro has set the starting state of every animated part. */
+.page {
+  visibility: hidden;
+}
+
+/* Added by the intro when it finishes. */
+.ready {
+  --about-ready: 1;
+}
+
+.hline {
+  height: 1px;
+  background: var(--c-ink);
+  opacity: 0.55;
+}
+
+/* The portrait: a 1px ink rim; monochrome until hovered, like the rest of the artwork. */
+.avatar {
+  border: 1px solid var(--c-ink);
+  overflow: hidden;
+  background: var(--c-paper);
+}
+
+.avatar img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(1) contrast(1.06);
+  transition: filter 0.45s var(--ease-out);
+}
+
+.avatar:hover img {
+  filter: none;
+}
+
+.diamond {
+  width: 100%;
+  height: 100%;
+  background: var(--c-ink);
+}
+
+/* Link cards: one centred row; each card a centred column (icon, name, role). A card with a URL is the link. */
+.cards {
+  height: calc(139 * var(--u));
+}
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+  height: 100%;
+  padding-top: calc(21 * var(--u));
+  border: 1px solid color-mix(in srgb, var(--c-ink) 38%, transparent);
+  background: color-mix(in srgb, var(--c-paper) 70%, transparent);
+  color: inherit;
+  text-align: center;
+  text-decoration: none;
+  transition:
+    border-color 0.3s var(--ease-out),
+    background 0.3s var(--ease-out);
+}
+
+a.card:hover,
+a.card:focus-visible {
+  border-color: var(--c-teal);
+  background: color-mix(in srgb, var(--c-teal) 6%, var(--c-paper));
+  outline: none;
+}
+
+.icon {
+  display: block;
+  width: calc(36 * var(--u));
+  height: calc(36 * var(--u));
+}
+
+.icon svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.external {
+  position: absolute;
+  top: calc(13 * var(--u));
+  right: calc(14 * var(--u));
+  width: calc(14 * var(--u));
+  height: calc(14 * var(--u));
+  fill: none;
+  stroke: var(--c-ink);
+  stroke-width: 1.1;
+}
+
+.cardName {
+  display: block;
+  margin: calc(11 * var(--u)) 0 calc(9 * var(--u));
+}
+
+
+/* The thin outline circles in the margins. */
+.circle {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  fill: none;
+  stroke: var(--c-ink);
+}

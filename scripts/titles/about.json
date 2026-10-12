@@ -1,0 +1,20 @@
+{
+  "font": "scripts/fonts/BodoniModa-opsz14-600.ttf",
+  "out": "src/sections/about/art/about.svg",
+  "capHeight": 86,
+  "leading": 0,
+  "lines": [
+    {
+      "text": "ABOUT",
+      "x": 0,
+      "width": 406,
+      "shards": [
+        null,
+        "polygon(-10% 110%, -10% 64%, 62% 34%, 62% 110%)",
+        "polygon(-10% 110%, -10% 70%, 48% 42%, 48% 110%)",
+        null,
+        "polygon(46% 110%, 46% 62%, 74% 34%, 74% 110%)"
+      ]
+    }
+  ]
+}

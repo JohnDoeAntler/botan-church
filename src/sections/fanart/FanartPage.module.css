@@ -1,0 +1,32 @@
+/* Hidden until the page intro has set the starting state of every animated part. */
+.page {
+  visibility: hidden;
+}
+
+/* Added by the intro when it finishes: wheel scrolling is enabled from then on. */
+.ready {
+  --fanart-ready: 1;
+}
+
+.list {
+  position: absolute;
+  inset: 0;
+}
+
+/* Artwork is monochrome to match the palette; hovering an item brings its colour back. */
+.item [data-art] {
+  filter: grayscale(1) contrast(1.06);
+  transition: filter 0.45s var(--ease-out);
+}
+
+.item:hover [data-art] {
+  filter: none;
+}
+
+/* Each item links to its artwork's source page: an invisible layer over the whole item. */
+.source {
+  position: absolute;
+  inset: 0;
+  z-index: 8;
+  cursor: pointer;
+}

@@ -1,0 +1,12 @@
+/* Above every page (and their intro canvases), below the travel star; clicks fall through except on the nav. */
+.chrome {
+  position: absolute;
+  inset: 0;
+  z-index: 50;
+  pointer-events: none;
+}
+
+/* hidden until the first intro reveals it */
+.chrome:not([data-shown]) {
+  visibility: hidden;
+}

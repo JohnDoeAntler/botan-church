@@ -1,0 +1,114 @@
+/* Hidden until the page intro has set the starting state of every animated part. */
+.page {
+  visibility: hidden;
+}
+
+/* Added by the intro when it finishes. */
+.ready {
+  --gospel-ready: 1;
+}
+
+/* Layers with no box of their own: the current entry, and controls released with it mid-intro. */
+.entry,
+.controls {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.controls button,
+.panel {
+  pointer-events: auto;
+}
+
+/* Art is monochrome to match the palette; hovering a panel brings its colour back. */
+.panel [data-art] {
+  filter: grayscale(1) contrast(1.06);
+  transition: filter 0.45s var(--ease-out);
+}
+
+.panel:hover [data-art] {
+  filter: none;
+}
+
+.panelFrame {
+  outline: 1px solid var(--c-ink);
+  outline-offset: -0.5px;
+  pointer-events: none;
+}
+
+/* Timeline node: a small ring; the current one is a teal target. */
+.node {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+
+.node::before,
+.node::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  border-radius: 50%;
+  translate: -50% -50%;
+  transition:
+    width 0.35s var(--ease-out),
+    height 0.35s var(--ease-out),
+    border-color 0.35s var(--ease-out),
+    background 0.35s var(--ease-out);
+}
+
+.node::before {
+  width: calc(11 * var(--u));
+  height: calc(11 * var(--u));
+  border: calc(1.4 * var(--u)) solid var(--c-ink);
+  background: var(--c-paper);
+  box-sizing: border-box;
+}
+
+.node::after {
+  width: 0;
+  height: 0;
+  background: var(--c-ink);
+}
+
+.node[data-active]::before {
+  width: calc(28 * var(--u));
+  height: calc(28 * var(--u));
+  border: calc(2.4 * var(--u)) solid var(--c-teal);
+}
+
+.node[data-active]::after {
+  width: calc(13 * var(--u));
+  height: calc(13 * var(--u));
+  background: var(--c-teal);
+  box-shadow: 0 0 0 calc(2 * var(--u)) var(--c-ink);
+}
+
+.tag {
+  display: grid;
+  place-items: center;
+  height: calc(30 * var(--u));
+  padding: 0 calc(13 * var(--u));
+  border: 1px solid var(--c-ink);
+  background: var(--c-paper);
+}
+
+.nodeBox {
+  width: calc(30 * var(--u));
+  height: calc(30 * var(--u));
+}
+
+/*
+ * Handwritten notes over the art: a soft paper halo keeps them readable on dark patches, like ink on a light patch.
+ * (A drop-shadow on the wrapper: the note's own decay filter would swallow a text-shadow.)
+ */
+.note {
+  filter: drop-shadow(0 0 calc(2 * var(--u)) var(--c-paper)) drop-shadow(0 0 calc(4 * var(--u)) var(--c-paper))
+    drop-shadow(0 0 calc(7 * var(--u)) var(--c-paper));
+}

@@ -1,0 +1,387 @@
+/* Mobile UI. Design px: the layouts are 941 wide, so 1 design px = 100vw / 941. */
+.root {
+  --mu: calc(100vw / 941);
+}
+
+/* A one-screen page: the Stage fills the viewport. */
+.screen {
+  height: 100svh;
+}
+
+/* A scrolling page: the Stage spans the width at its design aspect and the document scrolls. */
+.scroll {
+  min-height: 100svh;
+}
+
+/* ── shell ──────────────────────────────────────────────────────────── */
+
+/* The brand, top left: part of the shell, so it stays put (and the same) across pages; scrolls with the page. */
+.brand {
+  --mu: calc(100vw / 941);
+  position: absolute;
+  top: calc(38 * var(--mu));
+  left: calc(76 * var(--mu));
+  z-index: 30;
+  margin: 0;
+  font: 500 calc(26 * var(--mu)) / 1.2 var(--f-sans);
+  letter-spacing: 0.14em;
+  color: var(--c-ink-text, var(--c-ink));
+}
+.frame {
+  --u: calc(100vw / 941);
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  pointer-events: none;
+}
+
+.menuButton {
+  --mu: calc(100vw / 941);
+  position: fixed;
+  top: calc(36 * var(--mu));
+  right: calc(70 * var(--mu));
+  z-index: 60;
+  display: flex;
+  align-items: center;
+  gap: calc(22 * var(--mu));
+  padding: calc(10 * var(--mu)) 0;
+  border: 0;
+  background: none;
+  color: var(--c-ink);
+  cursor: pointer;
+}
+
+.menuLabel {
+  font: 500 calc(17 * var(--mu)) / 1 var(--f-sans);
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+}
+
+.menuLines {
+  display: grid;
+  gap: calc(8 * var(--mu));
+  width: calc(48 * var(--mu));
+}
+
+.menuLines i {
+  display: block;
+  height: 1.5px;
+  background: currentColor;
+  transition:
+    transform 0.3s var(--ease-out),
+    opacity 0.3s var(--ease-out);
+}
+
+.menuLines[data-open] i:nth-child(1) {
+  transform: translateY(calc(9.5 * var(--mu))) rotate(45deg);
+}
+
+.menuLines[data-open] i:nth-child(2) {
+  opacity: 0;
+}
+
+.menuLines[data-open] i:nth-child(3) {
+  transform: translateY(calc(-9.5 * var(--mu))) rotate(-45deg);
+}
+
+.menu {
+  --mu: calc(100vw / 941);
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: calc(40 * var(--mu));
+  padding: 0 calc(110 * var(--mu));
+  background: var(--c-paper);
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 0.3s var(--ease-out),
+    visibility 0.3s;
+}
+
+.menu[data-open] {
+  opacity: 1;
+  visibility: visible;
+}
+
+.menuBrand,
+.menuFoot {
+  font: 500 calc(18 * var(--mu)) / 1.4 var(--f-sans);
+  letter-spacing: 0.2em;
+}
+
+.menuFoot {
+  text-transform: uppercase;
+  font-size: calc(14 * var(--mu));
+  letter-spacing: 0.3em;
+}
+
+.menu ul {
+  display: grid;
+  gap: calc(14 * var(--mu));
+}
+
+.menuLink {
+  display: flex;
+  align-items: baseline;
+  gap: calc(28 * var(--mu));
+  padding: calc(14 * var(--mu)) 0;
+  border-bottom: 1px solid color-mix(in srgb, var(--c-ink) 22%, transparent);
+  font: 400 calc(64 * var(--mu)) / 1.1 var(--f-display);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.menuLink[aria-current="page"] {
+  color: var(--c-teal);
+}
+
+.menuIndex {
+  font: 500 calc(16 * var(--mu)) / 1 var(--f-sans);
+  letter-spacing: 0.2em;
+  color: var(--c-teal);
+}
+
+.loader {
+  --mu: calc(100vw / 941);
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: calc(26 * var(--mu));
+  background: var(--c-paper);
+}
+
+.loaderBrand {
+  font: 500 calc(30 * var(--mu)) / 1 var(--f-sans);
+  letter-spacing: 0.16em;
+}
+
+.loaderCount {
+  font: 400 calc(88 * var(--mu)) / 1 var(--f-display);
+}
+
+.loaderBar {
+  width: calc(420 * var(--mu));
+  height: 2px;
+  background: color-mix(in srgb, var(--c-ink) 15%, transparent);
+}
+
+.loaderBar span {
+  display: block;
+  height: 100%;
+  background: var(--c-teal);
+  transform-origin: left;
+  transition: transform 0.25s linear;
+}
+
+/* ── shared page parts ─────────────────────────────────────────────── */
+
+/* Artwork is monochrome to match the palette; touching it brings its colour back. */
+.art {
+  overflow: hidden;
+  background: var(--c-white);
+}
+
+.art img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(1) contrast(1.06);
+  transition: filter 0.4s var(--ease-out);
+}
+
+.art:active img {
+  filter: none;
+}
+
+.framed {
+  border: 1.5px solid var(--c-ink);
+}
+
+.center {
+  text-align: center;
+}
+
+.enter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: calc(40 * var(--mu, 1px));
+  width: 100%;
+  height: 100%;
+  background: var(--c-ink);
+  color: var(--c-paper);
+  font: 500 calc(34 * var(--u)) / 1 var(--f-sans);
+  letter-spacing: 0.24em;
+}
+
+.enter svg {
+  width: calc(66 * var(--u));
+  height: calc(16 * var(--u));
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.4;
+}
+
+/* Fanart cards: black strip over the bottom of the artwork. */
+.card {
+  display: flex;
+  align-items: center;
+  gap: calc(22 * var(--u));
+  height: 100%;
+  padding: 0 calc(24 * var(--u));
+  background: #141414;
+  color: var(--c-paper);
+}
+
+.cardText {
+  flex: 1;
+  min-width: 0;
+}
+
+.cardThumb {
+  width: calc(150 * var(--u));
+  height: calc(70 * var(--u));
+  border: 1px solid color-mix(in srgb, var(--c-paper) 70%, transparent);
+}
+
+.cardTags {
+  width: calc(150 * var(--u));
+  color: #cfcfca;
+}
+
+.cardTags hr {
+  margin: calc(4 * var(--u)) 0 calc(5 * var(--u));
+  border: 0;
+  border-top: 1px solid #cfcfca;
+}
+
+.arrowCircle {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  border: 1.4px solid var(--c-ink);
+  border-radius: 50%;
+}
+
+.arrowCircle svg {
+  width: 30%;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+}
+
+/* Gospel tags / about cards */
+.tag {
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--c-ink);
+  background: var(--c-paper);
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: calc(26 * var(--u));
+  height: 100%;
+}
+
+.linkCard {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: calc(34 * var(--u));
+  border: 1px solid color-mix(in srgb, var(--c-ink) 38%, transparent);
+  background: color-mix(in srgb, var(--c-paper) 70%, transparent);
+  text-align: center;
+}
+
+a.linkCard:active {
+  border-color: var(--c-teal);
+}
+
+.linkIcon {
+  width: calc(62 * var(--u));
+  height: calc(62 * var(--u));
+}
+
+.linkIcon svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.linkName {
+  display: block;
+  margin: calc(16 * var(--u)) 0 calc(10 * var(--u));
+}
+
+.external {
+  position: absolute;
+  top: calc(22 * var(--u));
+  right: calc(24 * var(--u));
+  width: calc(22 * var(--u));
+  height: calc(22 * var(--u));
+  fill: none;
+  stroke: var(--c-ink);
+  stroke-width: 1.2;
+}
+
+.closing {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: calc(40 * var(--u));
+}
+
+.divider {
+  display: block;
+  width: 100%;
+  height: 1px;
+  background: var(--c-ink);
+  opacity: 0.55;
+}
+
+/* Volumes: the picked book shows in colour, with a teal mark beside it. */
+.colour img {
+  filter: none;
+}
+
+.mark {
+  background: var(--c-teal);
+}
+
+.pick {
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+
+
+/* Mobile volumes: the label strip beside a cover (author, number). */
+.spine {
+  padding-top: calc(16 * var(--u));
+  background: #fbfaf5;
+  text-align: center;
+}
+
+/* A whole-item link layer (fanart rows → the artwork's source). */
+.cover {
+  display: block;
+  width: 100%;
+  height: 100%;
+}

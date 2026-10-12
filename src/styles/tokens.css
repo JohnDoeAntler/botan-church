@@ -1,0 +1,43 @@
+:root {
+  /* palette sampled from the original design mock-up */
+  --c-paper: #fff;
+  --c-paper-deep: #e7e7e1;
+  --c-ink: #171717;
+  --c-ink-soft: #3b3b3b;
+  /* body copy: charcoal like printed ink, not screen black */
+  --c-ink-text: #2a2a2a;
+  --c-teal: #23a9a3;
+  --c-teal-deep: #1a8d88;
+  --c-white: #fbfbf8;
+
+  --f-display: "Bodoni Moda", "Didot", "Bodoni 72", serif;
+  --f-sans: "Jost", "Futura", "Century Gothic", sans-serif;
+  --f-mincho: "Shippori Mincho", "Hiragino Mincho ProN", "Yu Mincho", serif;
+  --f-gothic: "Zen Kaku Gothic New", "Hiragino Sans", "Yu Gothic", sans-serif;
+  --f-mono: "Space Mono", "Consolas", monospace;
+  --f-hand-jp: "Yomogi", "Klee One", cursive;
+  --f-hand-en: "Caveat", cursive;
+
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Design unit. Stage sets it to (rendered width / design width); outside a Stage it is 1px.
+   Registered as <length> so it resolves to absolute px where declared, then inherits. */
+@property --u {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 1px;
+}
+
+/* Spare width / height when the viewport aspect differs from the design (see Stage fit="fill"). */
+@property --ox {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --oy {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
+}

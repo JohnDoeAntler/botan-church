@@ -1,0 +1,16 @@
+/* Hidden until useHeroIntro has set the starting state of every animated part. */
+.hero {
+  visibility: hidden;
+}
+
+.character img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  user-select: none;
+}
+
+/* Added by the intro when it finishes: the manga panels start rotating. */
+.ready {
+  --hero-ready: 1;
+}

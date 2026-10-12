@@ -1,0 +1,25 @@
+.viewport {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.fill {
+  height: 100%;
+  container-type: size;
+}
+
+.width {
+  container-type: inline-size;
+}
+
+.canvas {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background: var(--c-paper);
+}
+
+.fill .canvas {
+  height: 100%;
+}

@@ -1,0 +1,37 @@
+{
+  "name": "botan-church",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "art": "node scripts/build-art.mjs",
+    "predev": "npm run art",
+    "dev": "vite",
+    "prebuild": "npm run art",
+    "build": "tsc -b && vite build",
+    "lint": "oxlint",
+    "preview": "vite preview",
+    "title:build": "node scripts/build-title-svg.mjs scripts/titles/botan-church.json",
+    "prebake": "npm run art",
+    "bake": "node scripts/bake-intro.mjs"
+  },
+  "dependencies": {
+    "@gsap/react": "^2.1.2",
+    "gsap": "^3.15.0",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
+    "react-router-dom": "^7.18.4"
+  },
+  "devDependencies": {
+    "@types/node": "^24.13.3",
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.7",
+    "@vitejs/plugin-react": "^6.1.1",
+    "opentype.js": "^2.0.0",
+    "oxlint": "^1.81.0",
+    "puppeteer-core": "^25.13.0",
+    "sharp": "^0.35.5",
+    "typescript": "~6.0.2",
+    "vite": "^8.3.0"
+  }
+}

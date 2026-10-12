@@ -1,0 +1,52 @@
+/* On <html> while the custom cursor runs: the native one is hidden everywhere. */
+.active,
+.active * {
+  cursor: none !important;
+}
+
+/* Drawn at its largest (over links) and scaled down at rest, so it stays crisp at both sizes. The paper ring
+   (about 1px at rest) keeps it visible over dark artwork. */
+.dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2147483647;
+  width: 56px;
+  height: 56px;
+  box-sizing: border-box;
+  border: 5px solid var(--c-paper);
+  border-radius: 50%;
+  background: var(--c-ink);
+  pointer-events: none;
+  visibility: hidden;
+  transition:
+    background-color 0.3s var(--ease-out),
+    border-color 0.3s var(--ease-out);
+}
+
+/* Over something clickable: a translucent ink disc (shows on paper, teal and artwork alike). */
+.dot.link {
+  border-color: transparent;
+  background: color-mix(in srgb, var(--c-ink) 24%, transparent);
+}
+
+/* The whole picture, small, in colour; sized to the picture's own proportions by the script. */
+.preview {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2147483646;
+  box-sizing: border-box;
+  border: 1px solid var(--c-ink);
+  background: var(--c-paper);
+  pointer-events: none;
+  visibility: hidden;
+  transform-origin: 0 0;
+}
+
+.preview img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
