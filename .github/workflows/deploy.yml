@@ -1,4 +1,5 @@
-# Builds the site and publishes it to GitHub Pages (custom domain: public/CNAME) on every push to master.
+# Builds the site and publishes it to GitHub Pages (https://<owner>.github.io/<repo>/) on every push to master.
+# Moving to a custom domain later (e.g. botan.church): add public/CNAME with the domain and drop BASE_PATH below.
 # The images aren't committed: `npm run art` (run by bake and build) makes them from source-art/, and
 # `npm run bake` renders the intro animations with the runner's Chrome.
 name: Deploy to GitHub Pages
@@ -38,6 +39,9 @@ jobs:
 
       - name: Build
         run: npm run build
+        env:
+          # served from /<repo>/ (see src/lib/base.ts)
+          BASE_PATH: /${{ github.event.repository.name }}/
 
       # GitHub Pages has no SPA fallback: serve the app for deep links (/gospel, /fanart, …) too
       - run: cp dist/index.html dist/404.html
