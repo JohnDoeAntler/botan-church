@@ -1,6 +1,7 @@
 import gsap from "gsap";
 import { useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import { useLocation, useNavigate, type Location } from "react-router-dom";
+import { routeOf } from "../lib/base";
 import { BrandStar } from "../components/shapes/BrandStar";
 import { BRAND_STAR } from "../components/shapes/brandStarSpec";
 import { LeavingContext, PageTransitionContext, type PageTransition } from "./pageTransitionContext";
@@ -148,7 +149,7 @@ export function PageTransitionProvider({
       },
       go: (href) => {
         const s = state.current;
-        if (href === window.location.pathname) return;
+        if (href === routeOf(window.location.pathname)) return;
         // mid-intro: ignored for its first moments (no spam clicking, and the page is barely there), after that
         // the intro snaps to its end (page fully in place, handover done) and the normal exit runs from there
         if (s.intro && !s.intro.canLeave()) return;
@@ -191,7 +192,7 @@ export function PageTransitionProvider({
       const a = (e.target as Element | null)?.closest?.("a[href]") as HTMLAnchorElement | null;
       if (!a || !isInternal(a)) return;
       e.preventDefault();
-      api.go(a.getAttribute("href")!);
+      api.go(routeOf(a.getAttribute("href")!));
     };
     document.addEventListener("click", onClick);
     return () => document.removeEventListener("click", onClick);

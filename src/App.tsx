@@ -2,6 +2,7 @@ import { lazy, Suspense } from "react";
 import { BrowserRouter, Route, Routes, useLocation, type Location } from "react-router-dom";
 import { PageTransitionProvider } from "./animation/PageTransition";
 import { IS_MOBILE } from "./mobile/device";
+import { BASENAME } from "./lib/base";
 import { useLeavingLocation } from "./animation/pageTransitionContext";
 import { AboutPage } from "./sections/about/AboutPage";
 import { GospelPage } from "./sections/gospel/GospelPage";
@@ -62,7 +63,7 @@ function Pages() {
 /** The desktop site (the 1672 × 941 composition). */
 function DesktopApp() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={BASENAME}>
       <PageTransitionProvider preload={PRELOAD} images={IMAGES}>
         <main style={{ position: "relative", height: "100svh" }}>
           <Pages />

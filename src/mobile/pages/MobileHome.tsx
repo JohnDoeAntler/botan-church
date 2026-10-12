@@ -1,4 +1,5 @@
 import { Barcode, BlockArt, BrandTitle, Flex, Place, Rule, Sparkle, Stack, Text, VerticalText } from "../../components";
+import { link } from "../../lib/base";
 import { u } from "../../lib/units";
 import titleSvg from "../../sections/hero/art/botan-church.svg?raw";
 import { ART, COPY } from "../../sections/hero/heroContent";
@@ -132,7 +133,7 @@ export function MobileHome() {
           <Rule length={78} thickness={1.2} vertical />
         </div>
         <div data-anim="shape" style={{ width: u(416), height: u(78) }}>
-          <a href="/gospel" className={styles.enter}>
+          <a href={link("/gospel")} className={styles.enter}>
             ENTER
             <svg viewBox="0 0 66 16" aria-hidden>
               <path d="M0 8h64M57 1l7 7-7 7" />

@@ -1,4 +1,5 @@
 import type { HTMLAttributes, Ref } from "react";
+import { link } from "../../lib/base";
 import { cx, u } from "../../lib/units";
 import { decayStyle, type DecayValue } from "../effects/decayPresets";
 import styles from "./NavBar.module.css";
@@ -41,7 +42,7 @@ export function NavBar({
           return (
             <li key={item.href} data-anim-item="nav-item">
               <a
-                href={item.href}
+                href={link(item.href)}
                 className={cx(styles.link, active && styles.active)}
                 aria-current={active ? "page" : undefined}
                 style={decayStyle(decay)}

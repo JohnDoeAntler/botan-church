@@ -54,7 +54,8 @@ await build({ root, logLevel: "warn" });
 const server = await preview({ root, preview: { port: 4190, strictPort: false }, logLevel: "warn" });
 const url = server.resolvedUrls.local[0];
 
-const browser = await puppeteer.launch({ executablePath, headless: true });
+// (CI runners such as GitHub's Ubuntu 24.04 don't allow Chrome's sandbox)
+const browser = await puppeteer.launch({ executablePath, headless: true, args: process.env.CI ? ["--no-sandbox"] : [] });
 try {
   for (const { name, route, width } of PAGES.filter((p) => !only.length || only.includes(p.name) || only.includes(p.base))) {
     const outDir = path.join(root, "public", "intro", name);

@@ -2,6 +2,7 @@ import gsap from "gsap";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { BrowserRouter, Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import { preloadImages } from "../animation/preloadImages";
+import { BASENAME, link, routeOf } from "../lib/base";
 import { DecayFilters, PageFrame, TintFilters } from "../components";
 import { VOLUMES } from "../sections/volumes/volumesContent";
 import { FANART } from "../sections/fanart/fanartContent";
@@ -69,14 +70,15 @@ function Shell() {
   useEffect(() => {
     const go = (href: string) => {
       setMenu(false);
-      if (busy.current || href === window.location.pathname) return;
+      const route = routeOf(href);
+      if (busy.current || route === routeOf(window.location.pathname)) return;
       busy.current = true;
       gsap.to(mainRef.current, {
         opacity: 0,
         duration: 0.25,
         ease: "power2.in",
         onComplete: () => {
-          navigate(href);
+          navigate(route);
           window.scrollTo(0, 0);
           gsap.set(mainRef.current, { opacity: 1 });
           busy.current = false;
@@ -123,7 +125,7 @@ function Shell() {
         <ul>
           {NAV_ITEMS.map((item, i) => (
             <li key={item.href}>
-              <a href={item.href} className={styles.menuLink} aria-current={location.pathname === item.href ? "page" : undefined} tabIndex={menu ? 0 : -1}>
+              <a href={link(item.href)} className={styles.menuLink} aria-current={location.pathname === item.href ? "page" : undefined} tabIndex={menu ? 0 : -1}>
                 <span className={styles.menuIndex}>{String(i + 1).padStart(2, "0")}</span>
                 {item.label}
               </a>
@@ -141,7 +143,7 @@ export default function MobileApp() {
   const [ready, setReady] = useState(false);
   const onLoaded = useCallback(() => setReady(true), []);
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={BASENAME}>
       <DecayFilters />
       <TintFilters />
       {ready && <Shell />}

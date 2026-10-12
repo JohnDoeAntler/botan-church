@@ -1,4 +1,5 @@
 import { Barcode, BrandTitle, EnterButton, Flex, Rule, Stack, Text, VerticalText } from "../../components";
+import { link } from "../../lib/base";
 import { u } from "../../lib/units";
 import titleSvg from "./art/botan-church.svg?raw";
 import { COPY } from "./heroContent";
@@ -87,7 +88,7 @@ function TitleBlock() {
         </div>
         <Stack dir="row" align="center" gap={30} style={{ margin: `${u(24)} 0 0 ${u(1)}` }}>
           <div data-anim="enter">
-            <EnterButton href="/gospel" width={242} height={66} />
+            <EnterButton href={link("/gospel")} width={242} height={66} />
           </div>
           <div data-anim="rule">
             <Rule length={38} thickness={1.6} vertical />

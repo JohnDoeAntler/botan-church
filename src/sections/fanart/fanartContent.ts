@@ -1,4 +1,5 @@
 import type { BandVariant } from "../../components/blocks/blocks";
+import { asset } from "../../lib/base";
 import type { Art } from "../../lib/cover";
 import type { ListRegion } from "./fanartLayout";
 import { TAGLINE_LINES } from "../shared/siteCopy";
@@ -29,7 +30,7 @@ export type FanartEntry = {
   variant?: BandVariant;
 };
 
-const art = (n: number, w: number, h: number, fx: number, fy: number): Art => ({ src: `/fanart/${n}.webp`, w, h, focus: { x: fx, y: fy } });
+const art = (n: number, w: number, h: number, fx: number, fy: number): Art => ({ src: asset(`/fanart/${n}.webp`), w, h, focus: { x: fx, y: fy } });
 
 /** The archive, in display order. Add entries freely: the list re-flows and scrolls through all of them. */
 export const FANART: FanartEntry[] = [

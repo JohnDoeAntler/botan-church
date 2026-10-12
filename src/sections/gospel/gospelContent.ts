@@ -1,3 +1,4 @@
+import { asset } from "../../lib/base";
 import { COPY as HOME } from "../hero/heroContent";
 import { TAGLINE_LINES } from "../shared/siteCopy";
 import data from "../../../content/gospel.json";
@@ -35,7 +36,7 @@ export const TIMELINE_WINDOW = 5;
 export const ENTRIES: GospelEntry[] = (data as { entries: RawEntry[] }).entries.map((e, i) => {
   const quote = e.quote ?? [];
   return {
-    art: { src: `/gospel/${e.image ?? ""}`, focus: e.focus === "center" || e.focus === "bottom" ? e.focus : "top" },
+    art: { src: asset(`/gospel/${e.image ?? ""}`), focus: e.focus === "center" || e.focus === "bottom" ? e.focus : "top" },
     title: lines(e.title),
     en: e.subtitle ?? "",
     body: lines(e.description),

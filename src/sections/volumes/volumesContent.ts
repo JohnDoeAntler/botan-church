@@ -1,3 +1,4 @@
+import { asset } from "../../lib/base";
 import type { Art } from "../../lib/cover";
 
 export type Volume = {
@@ -17,7 +18,7 @@ export type Volume = {
 };
 
 /** Covers are shown whole (their box has the same 0.7 aspect), so the focus only matters for rounding. */
-const cover = (n: number, w: number): Art => ({ src: `/volumes/${n}.webp`, w, h: 697, focus: { x: 0.5, y: 0.5 } });
+const cover = (n: number, w: number): Art => ({ src: asset(`/volumes/${n}.webp`), w, h: 697, focus: { x: 0.5, y: 0.5 } });
 
 /** An Amazon Japan product page, by ISBN-10. */
 const amazon = (isbn: string) => `https://www.amazon.co.jp/dp/${isbn}`;

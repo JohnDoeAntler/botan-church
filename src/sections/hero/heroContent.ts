@@ -1,3 +1,4 @@
+import { asset } from "../../lib/base";
 import { duotoneMatrix } from "../../lib/color";
 
 export const DESIGN_SIZE = { width: 1672, height: 941 };
@@ -26,5 +27,5 @@ export const COPY = {
 export const CHARACTER_TINT = duotoneMatrix("#000000", "#ffffff");
 
 export const ART = {
-  character: "/assets/botan-character.webp",
+  character: asset("/assets/botan-character.webp"),
 };
