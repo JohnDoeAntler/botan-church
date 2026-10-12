@@ -149,7 +149,9 @@ export function PageTransitionProvider({
       },
       go: (href) => {
         const s = state.current;
-        if (href === routeOf(window.location.pathname)) return;
+        // already there (the router's path, so the base is stripped; a trailing slash doesn't make it another page)
+        const trim = (path: string) => (path.length > 1 ? path.replace(/\/+$/, "") : path);
+        if (trim(href) === trim(locationRef.current.pathname)) return;
         // mid-intro: ignored for its first moments (no spam clicking, and the page is barely there), after that
         // the intro snaps to its end (page fully in place, handover done) and the normal exit runs from there
         if (s.intro && !s.intro.canLeave()) return;

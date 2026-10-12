@@ -13,5 +13,5 @@ export const asset = (path: string) => BASE + path.replace(/^\//, "");
 /** An app route ("/gospel") → the href that points to it under BASE (for `<a href>`). */
 export const link = (route: string) => asset(route);
 
-/** A link's href (under BASE) → the app route the router navigates to. */
-export const routeOf = (href: string) => (href.startsWith(BASE) ? `/${href.slice(BASE.length)}` : href);
+/** A link's href or a URL path (under BASE) → the app route the router navigates to ("/botan-church" is "/" too). */
+export const routeOf = (href: string) => (href === BASENAME ? "/" : href.startsWith(BASE) ? `/${href.slice(BASE.length)}` : href);
