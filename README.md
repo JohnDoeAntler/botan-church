@@ -4,6 +4,8 @@ An unofficial fan site for Kurashiki Botan (倉敷牡丹) from namo's 狼少年�
 
 ![botan.church preview](docs/preview.gif)
 
+![botan.church preview 2](docs/preview-2.gif)
+
 ## Setup
 
 ```sh
