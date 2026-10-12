@@ -2,6 +2,8 @@
 
 An unofficial fan site for Kurashiki Botan (倉敷牡丹) from namo's 狼少年は今日も噓を重ねる. React 19 + TypeScript + Vite.
 
+![botan.church preview](docs/preview.gif)
+
 ## Setup
 
 ```sh
